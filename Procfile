@@ -1,1 +1,1 @@
-web: java target/Nerd-App-1.0.jar
+web: java $JAVA_OPTS -jar targer/dependency/webapps-runner.jar --port $PORT targer/*.war
