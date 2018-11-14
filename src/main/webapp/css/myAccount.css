@@ -1,0 +1,63 @@
+section{
+  width: 100%;  
+  text-align: center;
+}
+
+.box{
+    background-color: rgba(0, 0, 0, 0.712);
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 20px;
+
+    box-shadow: 2px 2px 10px black;
+}
+
+.boxAccoutSettings{
+    background-color: skyblue;
+}
+
+.boxAccoutSettings form{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.spaceBar{
+    background-color: hsl(263, 65%, 66%);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-shadow: 3px 3px 5px black;
+}
+
+.spaceBar label{
+    float: left;
+    color: white;
+    font-size: 1.2em;
+}
+
+.inputStyle input{
+    display: inline-block;
+    background-color: #fff;
+    padding: 5px;
+    width:95%;
+    border-radius: 5px;
+}
+
+.submitButton{
+    display: inline-block;
+    margin-top: 10px;
+    background-color: black;
+    padding: 2px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.submitButton input{
+    background-color: white;
+    padding: 10px;
+}
