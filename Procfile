@@ -1,0 +1,1 @@
+web: java -jar target/Nerd-App-1.0.jar
