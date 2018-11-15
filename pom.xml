@@ -7,6 +7,11 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 
+	<properties>
+		<maven.compiler.source>1.6</maven.compiler.source>
+  		<maven.compiler.target>1.6</maven.compiler.target>
+	</properties>
+	
 	<name>Nerd-App</name>
 
 	<dependencies>
@@ -72,7 +77,7 @@
 		</dependency>
 		
 	</dependencies>
-
+	
 	<build>
 
 		<plugins>
@@ -88,7 +93,7 @@
 					</compilerArguments>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
