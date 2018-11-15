@@ -6,33 +6,19 @@ $(document).ready(function(){
             $(".myHome").css({
                 "color":"black"
             });
-       }else if($("span").hasClass("perfil")){
+       }
+       
+       if($("span").hasClass("perfil")){
             $(".myPerfil").css({
                 "color":"black"
             });
-       }else{
+       }
+       
+       if($("span").hasClass("account")){
             $(".myAccount").css({
                 "color":"black"
             });
        }
-   }
-
-   /* Change page */ {
-        $(".myHome").click(function () { 
-            if($("span").hasClass("home") == false)
-                $(location).attr('href', 'home.html');
-        });
-    
-        $(".myPerfil").click(function () { 
-            if($("span").hasClass("perfil") == false)
-                 $(location).attr('href', 'perfil.html');
-        });
-
-        $(".myAccount").click(function () { 
-            if($("span").hasClass("userAccount") == false)
-                $(location).attr('href', 'myAccount.html');
-        });
-        
    }
 
    selectedMenu();

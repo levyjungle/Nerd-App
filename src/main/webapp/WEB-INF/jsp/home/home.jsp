@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -15,23 +15,10 @@
 </head>
 
 <body>
-    <header>
-        <span class="home"></span>
-        <nav>
-            <div class="menu">
-                <div class="title">
-                    <span>NerdZonia</span>
-                </div>
-                <ul>
-                    <li><a href="#" class="myHome">Home</a></li>
-                    <li><a href="#" class="myAccount">Minha Conta</a></li>
-                    <li><a href="#" class="myPerfil">Nome do Usuario</a></li>
-                    <li><a href="index.html">Log Out</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+	
+	<%@ include file="../include/menu.jsp" %>
     <section>
+    	<span class="home"></span>
         <div class="box">
             <div class="box-items news">
                 <div class="contentBox newsBox">
@@ -62,11 +49,7 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
-        <div>
-            <span>Bem Vindo ao NerdZonia</span>
-        </div>
-    </footer>
+    <%@ include file="../include/footer.jsp" %>
 </body>
 
 </html>

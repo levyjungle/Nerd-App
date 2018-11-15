@@ -1,6 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +12,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nerdZonia.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
 </head>
+
 <body>
-    <header>
-        <span class="perfil"></span>
-        <nav>
-            <div class="menu">
-                <div class="title">
-                    <span>NerdZonia</span>
-                </div>
-                <ul>
-                    <li><a href="#" class="myHome">Home</a></li>
-                    <li><a href="#" class="myAccount">Minha Conta</a></li>
-                    <li><a href="#" class="myPerfil">Nome do Usuario</a></li>
-                    <li><a href="index.html">Log Out</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+	<%@ include file="../include/menu.jsp" %>
     <section>
+    	<span class="perfil"></span>
         <div class="items items-fixed item-01">
             <div class="items-content item-content-01">
                 <div class="item-content-references">
@@ -56,8 +44,5 @@
             </div>
         </div>
     </section>
-    <footer>
-
-    </footer>
 </body>
 </html>
