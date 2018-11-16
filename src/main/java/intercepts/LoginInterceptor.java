@@ -24,7 +24,6 @@ public class LoginInterceptor implements Interceptor{
 	public void intercept(InterceptorStack stack, ControllerMethod method, Object controllerInstance)
 			throws InterceptionException {
 		if(userSession.isLogged()) {
-			//System.out.println(method.containsAnnotation(Public.class) + "//" + controllerInstance.toString());
 			stack.next(method, controllerInstance);
 		} else {
 			result.redirectTo(IndexController.class).index();

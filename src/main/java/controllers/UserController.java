@@ -1,11 +1,12 @@
 package controllers;
 
+import annotations.Public;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 
 @Controller
 public class UserController {
-
+	
 	@Get("conta")
 	public void myAccount() {
 		

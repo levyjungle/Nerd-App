@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>NerdZonia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="${contextPage.request.contextPage}/library/jquery-3.3.1.min.js"></script>
-    <script src="${contextPage.reqeust.contextPage}/css/action.js"></script>
+    <script src="${pageContext.request.contextPath}/library/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/css/action.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nerdZonia.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myAccount.css">
 </head>
