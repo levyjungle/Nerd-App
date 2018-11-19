@@ -1,6 +1,6 @@
 $(document).ready(function () {
-
-	var websocket = new WebSocket("ws://192.168.1.6:8080/NerdZonia/globalChatServer");
+	var url = window.location.href;
+	var websocket = new WebSocket(url+"/globalChatServer");
     
         websocket.onmessage = function processMessage(jsonObject){
         	

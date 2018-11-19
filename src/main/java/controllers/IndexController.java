@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import components.UserSession;
+import repository.FactoryManager;
 
 @Controller
 public class IndexController {
@@ -20,7 +21,7 @@ public class IndexController {
 	@Public
     @Get("/")
     public void index(){
-		
+		//System.out.println(FactoryManager.getManager());
     }
 
 	@Public
