@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import components.UserSession;
 import repository.FactoryManager;
+import util.FilesUpload;
 
 @Controller
 public class IndexController {
@@ -21,7 +22,8 @@ public class IndexController {
 	@Public
     @Get("/")
     public void index(){
-		//System.out.println(FactoryManager.getManager());
+		//FilesUpload upload = new FilesUpload();
+		//upload.upload();
     }
 
 	@Public

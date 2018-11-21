@@ -3,7 +3,7 @@ $(document).ready(function () {
 	var url = url.replace("https://", "ws://");
 	var url = url.replace("http://", "ws://");
 	var url = url.replace("home", "");
-	url = url+"/globalChatServer";
+	url = url+"globalChatServer";
 	var websocket = new WebSocket(url.toString());
     	
         websocket.onmessage = function processMessage(jsonObject){
