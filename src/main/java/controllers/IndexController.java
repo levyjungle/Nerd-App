@@ -22,8 +22,7 @@ public class IndexController {
 	@Public
     @Get("/")
     public void index(){
-		//FilesUpload upload = new FilesUpload();
-		//upload.upload();
+		
     }
 
 	@Public
