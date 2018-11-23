@@ -61,6 +61,7 @@ public class IndexController {
 	public void uploadfile(UploadedFile fileUpload) {
 			FilesUpload upload = new FilesUpload();
 			upload.upload(fileUpload);
+                        result.redirectTo(HomeController.class).home();
 	}
     
 }

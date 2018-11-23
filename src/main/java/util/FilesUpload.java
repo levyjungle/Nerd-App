@@ -15,10 +15,11 @@ public class FilesUpload {
 
 	public void upload(UploadedFile fileUpload) {
 			try {
-                            String[] getType = fileUpload.getFileName().split("/");
+                            String[] getType = fileUpload.getContentType().split("/");
                             if(getType[1].equalsIgnoreCase("jpeg")){
                                 getType[1] = "jpg";
                             }
+                            System.out.println(getType);
 			File file = new File("file", "."+getType[1]);
                         
 			FileUtils.copyInputStreamToFile(fileUpload.getFile(), file);
@@ -31,7 +32,7 @@ public class FilesUpload {
 	
 			Map<String, String> uploadResult = cloudinary.uploader().upload(file, ObjectUtils.asMap("public_id", "Nerdzonia"));
 			
-			System.out.println(uploadResult.get("url"));
+			System.out.println(uploadResult.get("url")+" "+getType[1]+" "+fileUpload.getContentType());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
