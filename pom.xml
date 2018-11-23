@@ -6,7 +6,7 @@
 	<artifactId>Nerd-App</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-	
+
 	<!-- alter java compiler version -->
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -16,7 +16,7 @@
 	<name>Nerd-App</name>
 
 	<dependencies>
-	
+
 		<!-- General -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -49,24 +49,24 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.5</version>
 		</dependency>
-		
+
 		<!-- dependency DB and hibernate -->
-        <dependency>
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.3.7.Final</version>
-		</dependency>	
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.1.Final</version>
-        </dependency>
+		</dependency>
 		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator-cdi</artifactId>
-            <version>5.0.0.Final</version>
-        </dependency>
-        <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-cdi</artifactId>
+			<version>5.0.0.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901-1.jdbc4</version>
@@ -81,7 +81,7 @@
 			<artifactId>jboss-logging</artifactId>
 			<version>3.3.0.Final</version>
 		</dependency>
-		
+
 		<!-- Create object JSON -->
 		<dependency>
 			<groupId>javax.json</groupId>
@@ -93,7 +93,7 @@
 			<artifactId>javax.json</artifactId>
 			<version>1.0.4</version>
 		</dependency>
-		
+
 
 		<!-- Crypt password users -->
 		<dependency>
@@ -101,14 +101,14 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.3m</version>
 		</dependency>
-		
+
 		<!-- Dependency to Cloudinary and upload files -->
 		<dependency>
-            <groupId>com.cloudinary</groupId>
-            <artifactId>cloudinary-http44</artifactId>
-            <version>1.3.0</version>
-        </dependency>
-        <dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
@@ -117,6 +117,11 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.1.2.RELEASE</version>
 		</dependency>
 	</dependencies>
 

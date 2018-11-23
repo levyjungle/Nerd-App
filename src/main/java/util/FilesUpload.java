@@ -13,25 +13,28 @@ import br.com.caelum.vraptor.observer.upload.UploadedFile;
 
 public class FilesUpload {
 
-	@SuppressWarnings(value = { "unchecked" })
-	public String upload(UploadedFile fileUpload) {
-		try {
-			File file = new File("", "");
-			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-				"cloud_name", "nerdzonia",
-				"api_key","", 
-				"api_secret", ""
-				));
-			
+	public void upload(UploadedFile fileUpload) {
+			try {
+                            String[] getType = fileUpload.getFileName().split("/");
+                            if(getType[1].equalsIgnoreCase("jpeg")){
+                                getType[1] = "jpg";
+                            }
+			File file = new File("file", "."+getType[1]);
+                        
 			FileUtils.copyInputStreamToFile(fileUpload.getFile(), file);
+                        
+			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+					"cloud_name", "nerdzonia",
+					"api_key","966118315853311", 
+					"api_secret", "HRv2x14ZTrL-YtfzIsgyrmBIcDw"
+					));
+	
 			Map<String, String> uploadResult = cloudinary.uploader().upload(file, ObjectUtils.asMap("public_id", "Nerdzonia"));
 			
-			return uploadResult.get("url");
-			
+			System.out.println(uploadResult.get("url"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 }

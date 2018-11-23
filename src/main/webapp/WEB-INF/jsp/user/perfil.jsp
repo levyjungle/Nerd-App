@@ -27,6 +27,7 @@
                         <li><a href="#">Matheus Gameplay</a></li>
                         <li><a href="#">Lucas Play</a></li>
                         <li><a href="#">Joyce Streamer</a></li>
+                        <li><a href="upload">upload</a></li>
                     </ul>
                 </div>
             </div>

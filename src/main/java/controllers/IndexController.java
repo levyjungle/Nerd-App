@@ -7,6 +7,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import components.UserSession;
 import repository.FactoryManager;
 import util.FilesUpload;
@@ -31,6 +32,8 @@ public class IndexController {
 		if(email.equalsIgnoreCase("jao") && password.equals("123")) {
 			userSession.setLogged(true);
 			result.redirectTo(HomeController.class).home();;
+		}else {
+			result.redirectTo(IndexController.class).index();
 		}
 	}
 	
@@ -45,6 +48,19 @@ public class IndexController {
 	public void logOut() {
 		userSession.setLogged(false);
 		result.redirectTo(IndexController.class).index();
+	}
+	
+	@Public
+	@Get("/upload")
+	public void upload(UploadedFile fileUpload) {
+		
+	}
+	
+	@Public
+	@Post("uploadfile")
+	public void uploadfile(UploadedFile fileUpload) {
+			FilesUpload upload = new FilesUpload();
+			upload.upload(fileUpload);
 	}
     
 }
