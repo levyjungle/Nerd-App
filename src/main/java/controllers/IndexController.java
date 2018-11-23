@@ -7,6 +7,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import components.UserSession;
 import repository.FactoryManager;
@@ -58,6 +59,7 @@ public class IndexController {
 	
 	@Public
 	@Post("uploadfile")
+	@UploadSizeLimit(sizeLimit = 70 * 1024 * 1024, fileSizeLimit = 20 * 1024 * 1024)
 	public void uploadfile(UploadedFile fileUpload) {
 			FilesUpload upload = new FilesUpload();
 			upload.upload(fileUpload);
