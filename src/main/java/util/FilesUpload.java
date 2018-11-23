@@ -30,7 +30,7 @@ public class FilesUpload {
 					"api_secret", "HRv2x14ZTrL-YtfzIsgyrmBIcDw"
 					));
 	
-			Map<String, String> uploadResult = cloudinary.uploader().upload(file, ObjectUtils.asMap("public_id", "Nerdzonia"));
+			Map<String, String> uploadResult = cloudinary.uploader().upload(file, ObjectUtils.asMap());
 			
 			System.out.println(uploadResult.get("url")+" "+getType[1]+" "+fileUpload.getContentType());
 		} catch (IOException e) {
