@@ -1,34 +1,32 @@
 package model;
 
-import util.UuidGenerator;
+import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Address {
+
+	@Id
 	private String code;
-	private Person person;
+
+	@Column(length = 100)
 	private String Street;
+
+	@Column(length = 10)
 	private String number;
+
+	@Column(length = 30)
 	private String neighborhood;
-
-	UuidGenerator id = new UuidGenerator();
-
-	public Address() {
-		this.code = id.Uuid();
-	}
 
 	public String getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setCode() {
+		this.code = UUID.randomUUID().toString();
 	}
 
 	public String getStreet() {
@@ -54,5 +52,5 @@ public class Address {
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
 	}
-	
+
 }

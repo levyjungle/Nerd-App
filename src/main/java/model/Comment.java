@@ -2,28 +2,43 @@ package model;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
-import util.UuidGenerator;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Comment {
+
+	@Id
 	private String code;
+
+	@JoinColumn
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Person> person;
+
+	@JoinColumn
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Media media;
+
 	private String comment;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
-
-	UuidGenerator id = new UuidGenerator();
-
-	public Comment() {
-		this.code = id.Uuid();
-	}
 
 	public String getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCode() {
+		this.code = UUID.randomUUID().toString();
 	}
 
 	public Set<Person> getPerson() {
@@ -57,5 +72,5 @@ public class Comment {
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
 	}
-	
+
 }

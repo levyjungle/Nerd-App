@@ -15,18 +15,17 @@ public class FilesUpload {
 
 	public String upload(UploadedFile fileUpload) {
 		try {
-			System.out.println(fileUpload.getContentType());
 			String[] getType = fileUpload.getContentType().split("/");
 			if (getType[1].equalsIgnoreCase("jpeg")) {
 				getType[1] = "jpg";
 			}
-			System.out.println(getType);
+                        
 			File file = new File("file", "." + getType[1]);
 
 			FileUtils.copyInputStreamToFile(fileUpload.getFile(), file);
                         
 			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "nerdzonia", "api_key",
-					"966118315853311", "api_secret", "HRv2x14ZTrL-YtfzIsgyrmBIcDw"));
+					"xxxx", "api_secret", "xxxx"));
                         Map params = null;
                         UuidGenerator uuid = new UuidGenerator();
                         if(getType[0].equalsIgnoreCase("video")){

@@ -1,29 +1,44 @@
 package model;
 
 import java.util.Date;
+import java.util.UUID;
 
-import util.UuidGenerator;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Media {
+
+	@Id
 	private String code;
+
+	@JoinColumn
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Person person;
+	
+	@Column(length = 50)
 	private String name;
+
 	private String synopsis;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
+
 	private String url;
-	
-	UuidGenerator id = new UuidGenerator();
-	
-	public Media() {
-		this.code = id.Uuid();
-	}
 
 	public String getCode() {
 		return code;
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		this.code = UUID.randomUUID().toString();
 	}
 
 	public Person getPerson() {
@@ -65,5 +80,5 @@ public class Media {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 }

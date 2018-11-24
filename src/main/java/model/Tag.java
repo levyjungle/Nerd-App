@@ -1,16 +1,17 @@
 package model;
 
-import util.UuidGenerator;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Tag {
+	
+	@Id
 	private String code;
+	
+	@Column(length = 50, nullable = false)
 	private String taglist;
-	
-	UuidGenerator id = new UuidGenerator();
-	
-	public Tag() {
-		this.code = id.Uuid();
-	}
 
 	public String getCode() {
 		return code;

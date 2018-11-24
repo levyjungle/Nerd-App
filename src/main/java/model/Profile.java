@@ -1,38 +1,34 @@
 package model;
 
-import util.UuidGenerator;
+import java.util.UUID;
 
-public class Perfil {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import util.Crypt;
+
+@Entity
+public class Profile {
+	
+	@Id
 	private String code;
 	
-	private Person person;
-	
+	@Column(length = 30)
 	private String nickname;
 	
+	@Column(length = 30, nullable = false, unique = true)
 	private String email;
 	
+	@Column(length = 50 , nullable = false)
 	private String password;
-	
-	UuidGenerator id = new UuidGenerator();
-	
-	public Perfil() {
-		this.code = id.Uuid();
-	}
 
 	public String getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setCode() {
+		this.code = UUID.randomUUID().toString();
 	}
 
 	public String getNickname() {
@@ -54,9 +50,11 @@ public class Perfil {
 	public String getPassword() {
 		return password;
 	}
-
+	
+	
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = Crypt.hash(password);
 	}
+	
 	
 }

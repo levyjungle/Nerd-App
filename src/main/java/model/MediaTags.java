@@ -1,34 +1,45 @@
 package model;
 
 import java.util.Set;
+import java.util.UUID;
 
-import util.UuidGenerator;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+@Entity
 public class MediaTags {
+
+	@Id
 	private String code;
-	private Set<Media> media;
+	
+	@JoinColumn
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Media media;
+	
+	@JoinColumn
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Tag> tag;
 	
-	UuidGenerator id = new UuidGenerator();
-	
-	public MediaTags() {
-		this.code = id.Uuid();
+
+	public Media getMedia() {
+		return media;
+	}
+
+	public void setMedia(Media media) {
+		this.media = media;
 	}
 
 	public String getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public Set<Media> getMedia() {
-		return media;
-	}
-
-	public void setMedia(Set<Media> media) {
-		this.media = media;
+	public void setCode() {
+		this.code = UUID.randomUUID().toString();
 	}
 
 	public Set<Tag> getTag() {
@@ -38,5 +49,5 @@ public class MediaTags {
 	public void setTag(Set<Tag> tag) {
 		this.tag = tag;
 	}
-	
+
 }
