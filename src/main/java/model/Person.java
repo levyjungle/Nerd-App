@@ -31,6 +31,18 @@ public class Person {
 		return code;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
@@ -46,17 +58,9 @@ public class Person {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
-
-	public void setCode() {
+	
+	public void personUuid() {
 		this.code = UUID.randomUUID().toString();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }

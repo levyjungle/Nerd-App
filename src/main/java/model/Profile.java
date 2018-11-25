@@ -27,8 +27,8 @@ public class Profile {
 		return code;
 	}
 
-	public void setCode() {
-		this.code = UUID.randomUUID().toString();
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getNickname() {
@@ -50,11 +50,12 @@ public class Profile {
 	public String getPassword() {
 		return password;
 	}
-	
-	
+
 	public void setPassword(String password) {
 		this.password = Crypt.hash(password);
 	}
 	
-	
+	public void profileUuid() {
+		this.code = UUID.randomUUID().toString();
+	}
 }

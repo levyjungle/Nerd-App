@@ -25,8 +25,8 @@ public class Address {
 		return code;
 	}
 
-	public void setCode() {
-		this.code = UUID.randomUUID().toString();
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getStreet() {
@@ -51,6 +51,10 @@ public class Address {
 
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
+	}
+	
+	public void addressUuid() {
+		this.code = UUID.randomUUID().toString();
 	}
 
 }

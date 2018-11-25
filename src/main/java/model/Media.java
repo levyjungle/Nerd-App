@@ -20,7 +20,7 @@ public class Media {
 	private String code;
 
 	@JoinColumn
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Person person;
 	
 	@Column(length = 50)
@@ -38,7 +38,7 @@ public class Media {
 	}
 
 	public void setCode(String code) {
-		this.code = UUID.randomUUID().toString();
+		this.code = code;
 	}
 
 	public Person getPerson() {
@@ -79,6 +79,10 @@ public class Media {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	public void mediaUuid() {
+		this.code = UUID.randomUUID().toString();
 	}
 
 }

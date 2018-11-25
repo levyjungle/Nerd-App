@@ -11,7 +11,7 @@ public class Tag {
 	private String code;
 	
 	@Column(length = 50, nullable = false)
-	private String taglist;
+	private String tagName;
 
 	public String getCode() {
 		return code;
@@ -22,11 +22,11 @@ public class Tag {
 	}
 
 	public String getTaglist() {
-		return taglist;
+		return tagName;
 	}
 
-	public void setTaglist(String taglist) {
-		this.taglist = taglist;
+	public void setTaglist(String tagName) {
+		this.tagName = tagName;
 	}
 	
 }
