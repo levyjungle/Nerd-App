@@ -19,29 +19,34 @@
 				</div>
 			</div>
 			<div class="box">
-				<form class="form">
+				<form class="form" method="post" action="sendRegister">
 					<div class="title">
 						<h2>Cadastra na NerdZonia</h2>
 					</div>
 					
 					<div class="field">
 						<label>Nome</label><br>
-						<input type="text" name="" placeholder="Digite seu nome" maxlength="150" required>
+						<input type="text" name="name" placeholder="Digite seu nome" maxlength="50" required>
 					</div>
-	
+					
+					<div class="field">
+						<label>Apelido</label><br>
+						<input type="text" name="nickname" placeholder="Digite seu apelido" maxlength="50" required>
+					</div>
+					
 					<div class="field">
 						<label>Email</label><br>
-						<input type="email" name="" placeholder="Digite email valido" maxlength="100" required>
+						<input type="email" name="email" placeholder="Digite email valido" maxlength="50" required>
 					</div>
 					
 					<div class="field">
 						<label>Senha</label><br>
-						<input type="password" name="" placeholder="Digite sua senha" required>
+						<input type="password" name="password" placeholder="Digite sua senha" required>
 					</div>
 	
 					<div class="field">
 						<label>Confirmar</label><br>
-						<input type="password" name="" placeholder="Confirme a senha" required>
+						<input type="password" name="passwordConfirm" placeholder="Confirme a senha" required>
 					</div>
 	
 					<div class="button">

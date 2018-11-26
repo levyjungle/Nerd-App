@@ -15,6 +15,8 @@ import model.Address;
 import model.Person;
 import model.Profile;
 import repository.PersonRepository;
+import repository.ProfileRepository;
+import util.Crypt;
 import util.FilesUpload;
 
 @Controller
@@ -27,46 +29,26 @@ public class IndexController {
 
 	@Public
 	@Get("/")
-	public void index(){
-		
-		Person p = new Person();
-		Profile profile = new Profile();
-		Address address = new Address();
-		//Add test nem person
-		/*
-		profile.profileUuid();
-		profile.setEmail("jao@gmail.com");
-		profile.setNickname("jao");
-		profile.setPassword("123");
-		
-		address.addressUuid();
-		
-		p.personUuid();
-		p.setName("jao");
-		p.setProfile(profile);
-		p.setAddress(address);
-		
-		PersonRepository personRepository = new PersonRepository();
-		personRepository.savePerson(p);
-		 */
-		
-		//Search person per id
-		/*
-		PersonRepository person = new PersonRepository();
-		p = person.searchPersonId("please put your code here for test");
-		System.out.println(p.getName());
-		*/
-		
+	public void index() {
+
 	}
 
 	@Public
 	@Post("logar")
 	public void login(String email, String password) {
-		if (email.equalsIgnoreCase("jao") && password.equals("123")) {
-			userSession.setLogged(true);
-			result.redirectTo(HomeController.class).home();
-		} else {
+		ProfileRepository profileRepository = new ProfileRepository();
+		Profile pro = profileRepository.searchEspecificProfileEmail(email);
+		if (pro == null) {
 			result.redirectTo(IndexController.class).index();
+		} else {
+			boolean confirmPassword = Crypt.verifyHash(password, pro.getPassword());
+			System.out.println(confirmPassword);
+			if (email.equals(pro.getEmail()) && confirmPassword) {
+				userSession.setLogged(true);
+				result.redirectTo(HomeController.class).home();
+			} else {
+				result.redirectTo(IndexController.class).index();
+			}
 		}
 	}
 
@@ -74,6 +56,37 @@ public class IndexController {
 	@Get("/cadastro")
 	public void register() {
 
+	}
+
+	@Public
+	@Post("sendRegister")
+	public void userRegister(String name, String nickname, String email, String password) {
+		ProfileRepository profileRepository = new ProfileRepository();
+		Profile pro = profileRepository.searchEspecificProfileEmail(email);
+		if (pro == null) {
+			PersonRepository personRepository = new PersonRepository();
+			Person person = new Person();
+			Profile profile = new Profile();
+			Address address = new Address();
+
+			profile.profileUuid();
+			profile.setEmail(email);
+			profile.setNickname(nickname);
+			profile.setPassword(password);
+
+			address.addressUuid();
+
+			person.personUuid();
+			person.setName(name);
+			person.setAddress(address);
+			person.setProfile(profile);
+
+			userSession.setLogged(true);
+			personRepository.savePerson(person);
+			result.redirectTo(HomeController.class).home();
+		} else {
+			result.redirectTo(IndexController.class).index();
+		}
 	}
 
 	@Public

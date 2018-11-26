@@ -16,8 +16,10 @@ public class PersonRepository {
 			em.getTransaction().commit();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
+			System.out.println(e.getCause());
 		} finally {
-			FactoryManager.closeConnection();
+			em.close();
 		}
 	}
 	
@@ -25,13 +27,15 @@ public class PersonRepository {
 		EntityManager em = FactoryManager.getManager();
 		try {
 			em.getTransaction().begin();
-			Person p = em.find(Person.class, person);
+			Person p = em.find(Person.class, person.getCode());
 			em.remove(p);
 			em.getTransaction().commit();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
+			System.out.println(e.getCause());
 		} finally {
-			FactoryManager.closeConnection();
+			em.close();
 		}
 	}
 	
@@ -48,7 +52,7 @@ public class PersonRepository {
 			System.out.println(e.getMessage());
 			return null;
 		} finally {
-			FactoryManager.closeConnection();
+			em.close();
 		}
 	}
 	
