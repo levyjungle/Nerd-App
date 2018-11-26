@@ -25,7 +25,7 @@ public class FilesUpload {
 			FileUtils.copyInputStreamToFile(fileUpload.getFile(), file);
                         
 			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "nerdzonia", "api_key",
-					"xxxx", "api_secret", "xxxx"));
+					"966118315853311", "api_secret", "HRv2x14ZTrL-YtfzIsgyrmBIcDw"));
                         Map params = null;
                         UuidGenerator uuid = new UuidGenerator();
                         if(getType[0].equalsIgnoreCase("video")){

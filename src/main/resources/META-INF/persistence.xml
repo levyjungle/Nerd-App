@@ -8,10 +8,10 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Nerdzonia" />
-			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-184-72-221-2.compute-1.amazonaws.com:5432/d5up2c0ugn4ftv" />
+			<property name="javax.persistence.jdbc.user" value="ifyewbnzioafgc" />
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.password" value="1915" />
+			<property name="javax.persistence.jdbc.password" value="cb649d526f5cc4aeed012f3221a5ac51e598b61c5851a990af2a44f24a5b72a1" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 
