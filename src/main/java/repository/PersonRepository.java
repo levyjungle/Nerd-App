@@ -2,6 +2,11 @@ package repository;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+
 import model.Person;
 import util.FactoryManager;
 
@@ -54,6 +59,26 @@ public class PersonRepository {
 		} finally {
 			em.close();
 		}
+	}
+
+	public Person searchSpecificEntityValueIntoPerson(String tableName, String columnName, String valueToSearch) {
+		String tableNameAlias = tableName.charAt(0)+"";
+		EntityManager em = FactoryManager.getManager();
+		Session session = (Session) em.getDelegate();
+		Criteria criteria = session.createCriteria(Person.class);
+		try {
+			criteria.createAlias(tableName, tableNameAlias);
+			Criterion c1 = Restrictions.eq(tableNameAlias+"."+columnName, valueToSearch);
+			criteria.add(c1);
+			Person person = (Person) criteria.uniqueResult();
+			return person;
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			return null;
+		}finally {
+			em.close();
+		}
+		
 	}
 	
 }

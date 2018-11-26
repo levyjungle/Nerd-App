@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import annotations.Public;
@@ -12,16 +14,18 @@ import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import components.UserSession;
 
 import model.Address;
+import model.Media;
 import model.Person;
 import model.Profile;
+import repository.MediaRepository;
 import repository.PersonRepository;
-import repository.ProfileRepository;
 import util.Crypt;
 import util.FilesUpload;
 
+
 @Controller
 public class IndexController {
-
+	
 	@Inject
 	private Result result;
 	@Inject
@@ -30,21 +34,24 @@ public class IndexController {
 	@Public
 	@Get("/")
 	public void index() {
-
+		if(userSession.isLogged()) {
+			result.redirectTo(HomeController.class).home();
+		}
 	}
 
 	@Public
 	@Post("logar")
 	public void login(String email, String password) {
-		ProfileRepository profileRepository = new ProfileRepository();
-		Profile pro = profileRepository.searchEspecificProfileEmail(email);
-		if (pro == null) {
+		PersonRepository personRepository = new PersonRepository();
+		Person person = personRepository.searchSpecificEntityValueIntoPerson("profile", "email", email);
+		if (person == null) {
 			result.redirectTo(IndexController.class).index();
 		} else {
-			boolean confirmPassword = Crypt.verifyHash(password, pro.getPassword());
-			System.out.println(confirmPassword);
-			if (email.equals(pro.getEmail()) && confirmPassword) {
+			boolean confirmPassword = Crypt.verifyHash(password, person.getProfile().getPassword());
+			if (email.equals(person.getProfile().getEmail()) && confirmPassword) {
 				userSession.setLogged(true);
+			
+				userSession.setPerson(person);
 				result.redirectTo(HomeController.class).home();
 			} else {
 				result.redirectTo(IndexController.class).index();
@@ -55,17 +62,18 @@ public class IndexController {
 	@Public
 	@Get("/cadastro")
 	public void register() {
-
+		if(userSession.isLogged()) {
+			result.redirectTo(HomeController.class).home();
+		}
 	}
 
 	@Public
 	@Post("sendRegister")
 	public void userRegister(String name, String nickname, String email, String password) {
-		ProfileRepository profileRepository = new ProfileRepository();
-		Profile pro = profileRepository.searchEspecificProfileEmail(email);
-		if (pro == null) {
-			PersonRepository personRepository = new PersonRepository();
-			Person person = new Person();
+		PersonRepository personRepository = new PersonRepository();
+		Person p = personRepository.searchSpecificEntityValueIntoPerson("profile", "email", email);
+		if (p == null) {
+			final Person person = new Person();
 			Profile profile = new Profile();
 			Address address = new Address();
 
@@ -83,6 +91,8 @@ public class IndexController {
 
 			userSession.setLogged(true);
 			personRepository.savePerson(person);
+
+			userSession.setPerson(person);
 			result.redirectTo(HomeController.class).home();
 		} else {
 			result.redirectTo(IndexController.class).index();
@@ -103,16 +113,22 @@ public class IndexController {
 
 	@Post("uploadfile")
 	@UploadSizeLimit(sizeLimit = 100 * 1024 * 1024, fileSizeLimit = 100 * 1024 * 1024)
-	public void uploadfile(UploadedFile fileUpload) {
-		FilesUpload upload = new FilesUpload();
-		String url = upload.upload(fileUpload);
-		System.out.println(url);
+	public void uploadfile(String title, String synopsis, UploadedFile fileUpload) {
+		if(fileUpload != null) {
+			FilesUpload upload = new FilesUpload();
+			MediaRepository mediaRepository = new MediaRepository();
+			
+			Media media = new Media();
+			media.mediaUuid();
+			media.setDatetime(new Date(System.currentTimeMillis()));
+			media.setName(title);
+			media.setSynopsis(synopsis);
+			media.setPerson(userSession.getPerson());
+			media.setUrl(upload.upload(fileUpload));
+			
+			mediaRepository.saveMedia(media);
+		}
+		
 		result.redirectTo(HomeController.class).home();
-	}
-
-	@Get("/error.jsp")
-	@Public
-	public void error() {
-
 	}
 }
