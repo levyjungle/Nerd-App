@@ -8,6 +8,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import model.Person;
+import org.hibernate.HibernateException;
 import util.FactoryManager;
 
 public class PersonRepository {
@@ -72,7 +73,7 @@ public class PersonRepository {
 			criteria.add(c1);
 			Person person = (Person) criteria.uniqueResult();
 			return person;
-		}catch(Exception e){
+		}catch(HibernateException e){
 			System.out.println(e.getMessage());
 			return null;
 		}finally {
@@ -80,5 +81,20 @@ public class PersonRepository {
 		}
 		
 	}
+        
+        public void updatePerson(Person person){
+             EntityManager em = FactoryManager.getManager();
+            try {
+                em.getTransaction().begin();
+                em.merge(person);
+		em.getTransaction().commit();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                em.close();
+            }
+            
+            
+        }
 	
 }
