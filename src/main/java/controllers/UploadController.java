@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,13 +25,14 @@ import util.FilesUpload;
 
 
 @Controller
-public class IndexController {
+public class UploadController {
 	
 	@Inject
 	private Result result;
 	@Inject
 	private UserSession userSession;
-
+	
+	/*
 	@Public
 	@Get("/")
 	public void index() {
@@ -38,6 +40,7 @@ public class IndexController {
 			result.redirectTo(HomeController.class).home();
 		}
 	}
+	
 
 	@Public
 	@Post("logar")
@@ -98,12 +101,12 @@ public class IndexController {
 			result.redirectTo(IndexController.class).index();
 		}
 	}
-
+	*/
 	@Public
 	@Get("sair")
 	public void logOut() {
 		userSession.setLogged(false);
-		result.redirectTo(IndexController.class).index();
+		result.redirectTo(HomeController.class).home();
 	}
 
 	@Get("/upload")
@@ -119,16 +122,21 @@ public class IndexController {
 			MediaRepository mediaRepository = new MediaRepository();
 			
 			Media media = new Media();
+			Map<String, String> uploadResult = upload.upload(fileUpload);
+			
 			media.mediaUuid();
 			media.setDatetime(new Date(System.currentTimeMillis()));
 			media.setName(title);
 			media.setSynopsis(synopsis);
 			media.setPerson(userSession.getPerson());
-			media.setUrl(upload.upload(fileUpload));
+			media.setUrl(uploadResult.get("url"));
+			media.setMediaName(uploadResult.get("public_id"));
+			media.setMediaType(fileUpload.getContentType());
 			
 			mediaRepository.saveMedia(media);
 		}
 		
 		result.redirectTo(HomeController.class).home();
 	}
+	
 }
