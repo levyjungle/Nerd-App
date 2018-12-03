@@ -1,10 +1,13 @@
 package model;
 
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import util.Crypt;
 
@@ -20,11 +23,38 @@ public class Profile {
 	@Column(length = 100, nullable = false, unique = true)
 	private String email;
 	
+	@Temporal(TemporalType.DATE)
+	@Column(length = 30)
+	private Date birthday;
+	
+	@Column(length = 30)
+	private String sex;
+	
 	@Column(length = 100 , nullable = false)
 	private String password;
-
+	
+	private String urlProfile;
+	
+	private String urlBackground;
+	
 	public String getCode() {
 		return code;
+	}
+
+	public String getUrlProfile() {
+		return urlProfile;
+	}
+
+	public void setUrlProfile(String urlProfile) {
+		this.urlProfile = urlProfile;
+	}
+
+	public String getUrlBackground() {
+		return urlBackground;
+	}
+
+	public void setUrlBackground(String urlBackground) {
+		this.urlBackground = urlBackground;
 	}
 
 	public void setCode(String code) {
@@ -55,6 +85,22 @@ public class Profile {
 		this.password = Crypt.hash(password);
 	}
 	
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
 	public void profileUuid() {
 		this.code = UUID.randomUUID().toString();
 	}

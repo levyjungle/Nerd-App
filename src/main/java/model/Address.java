@@ -20,6 +20,17 @@ public class Address {
 
 	@Column(length = 30)
 	private String neighborhood;
+	
+	@Column(length = 30)
+	private String city;
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	public String getCode() {
 		return code;

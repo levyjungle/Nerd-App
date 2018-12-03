@@ -32,6 +32,27 @@ public class Media {
 	private Date datetime;
 
 	private String url;
+	
+	private String mediaName;
+	
+	public String getMediaType() {
+		return mediaType;
+	}
+
+	public void setMediaType(String mediaType) {
+		this.mediaType = mediaType;
+	}
+
+	@Column(length = 50)
+	private String mediaType;
+	
+	public String getMediaName() {
+		return mediaName;
+	}
+
+	public void setMediaName(String mediaName) {
+		this.mediaName = mediaName;
+	}
 
 	public String getCode() {
 		return code;

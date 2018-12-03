@@ -18,7 +18,7 @@ public class Person {
 
 	@Column(length = 100, nullable = false)
 	private String name;
-
+	
 	@JoinColumn
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Address address;
