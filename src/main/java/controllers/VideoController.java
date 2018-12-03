@@ -46,7 +46,7 @@ public class VideoController {
 	public void edit(String code) {
 		Media media = mediaRepository.searchMediaCode(code);	
 		if (!media.getPerson().getCode().equals(userSession.getPerson().getCode())) {
-			result.redirectTo(HomeController.class).home();
+			result.redirectTo(IndexController.class).index();
 		}else {
 			List<Comment> comment = commentRepository.searchCommentByMedia(code);
 			result.include("comment", comment);
@@ -71,7 +71,7 @@ public class VideoController {
 			
 			mediaRepository.updateMedia(media);
 		}
-		result.redirectTo(HomeController.class).home();
+		result.redirectTo(IndexController.class).index();
 	}
 	
 	@Post("videoComment")

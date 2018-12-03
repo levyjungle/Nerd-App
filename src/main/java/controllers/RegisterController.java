@@ -24,10 +24,10 @@ public class RegisterController {
 	PersonRepository personRepository = new PersonRepository();
 	
 	@Public
-	@Get("/cadastro")
+	@Get("/register")
 	public void register() {
 		if (userSession.isLogged()) {
-			result.redirectTo(HomeController.class).home();
+			result.redirectTo(IndexController.class).index();
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class RegisterController {
 			personRepository.savePerson(person);
 
 			userSession.setPerson(person);
-			result.redirectTo(UserController.class).perfil();
+			result.redirectTo(HomeController.class).home();
 		} else {
 			result.redirectTo(RegisterController.class).register();
 		}

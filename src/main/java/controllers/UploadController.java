@@ -106,7 +106,7 @@ public class UploadController {
 	@Get("sair")
 	public void logOut() {
 		userSession.setLogged(false);
-		result.redirectTo(HomeController.class).home();
+		result.redirectTo(IndexController.class).index();
 	}
 
 	@Get("/upload")
@@ -136,7 +136,7 @@ public class UploadController {
 			mediaRepository.saveMedia(media);
 		}
 		
-		result.redirectTo(HomeController.class).home();
+		result.redirectTo(IndexController.class).index();
 	}
 	
 }
