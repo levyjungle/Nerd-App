@@ -11,7 +11,7 @@
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/admin/listMovies">Back</a></li>
 	</ul>
-	<form action="${pageContext.request.contextPath}/video/editFile" method="post">
+	<form action="${pageContext.request.contextPath}/admin/editFile" method="post">
 		<input type="hidden" name="code" value="${media.code}">
 		<input type="text" name="name" value="${media.name}">
 		<textarea rows="3" cols="30" name="synopsis">${media.synopsis}</textarea>
