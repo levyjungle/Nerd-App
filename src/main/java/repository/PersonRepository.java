@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
@@ -61,7 +63,7 @@ public class PersonRepository {
 			em.close();
 		}
 	}
-
+	
 	public Person searchSpecificEntityValueIntoPerson(String tableName, String columnName, String valueToSearch) {
 		String tableNameAlias = tableName.charAt(0)+"";
 		EntityManager em = FactoryManager.getManager();
@@ -82,19 +84,29 @@ public class PersonRepository {
 		
 	}
         
-        public void updatePerson(Person person){
-             EntityManager em = FactoryManager.getManager();
-            try {
-                em.getTransaction().begin();
-                em.merge(person);
-		em.getTransaction().commit();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            } finally {
-                em.close();
-            }
-            
-            
-        }
+    public void updatePerson(Person person){
+         EntityManager em = FactoryManager.getManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(person);
+	em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            em.close();
+        }  
+    }
+    
+    public List<Person> listAllPerson() {
+    	EntityManager em = FactoryManager.getManager();
+    	try {
+    		return em.createQuery("From Person", Person.class).getResultList();
+    	}catch(Exception e) {
+    		System.out.println(e.getMessage());
+    		return null;
+    	}finally {
+    		em.close();
+    	}
+    }
 	
 }

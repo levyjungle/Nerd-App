@@ -5,6 +5,8 @@
  */
 package repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import model.Tag;
 import org.hibernate.Criteria;
@@ -33,10 +35,11 @@ public class TagRepository {
         }
     }
     
-    public void deleteTag(Tag tag) {
+    public void deleteTag(String code) {
         EntityManager em = FactoryManager.getManager();
         try {
             em.getTransaction().begin();
+            Tag tag = em.find(Tag.class, code);
             em.remove(tag);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -59,18 +62,42 @@ public class TagRepository {
         }
     }
     
-    public Tag searchTagByName(String tag) {
+    public List<Tag> searchTagByName(String tag) {
         EntityManager em = FactoryManager.getManager();
         try {
             Session session = (Session) em.getDelegate();
             Criteria c = session.createCriteria(Tag.class);
-            c.add(Restrictions.ilike("tag", tag, MatchMode.ANYWHERE));
-            return (Tag) c.list();
+            c.add(Restrictions.ilike("tagName", tag, MatchMode.ANYWHERE));
+            return  c.list();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             return null;
         } finally {
             em.close();
         }
+    }
+    
+    public Tag searchTagByCode(String code) {
+    	EntityManager em = FactoryManager.getManager();
+    	try {
+    		return em.find(Tag.class, code);
+    	}catch(Exception e) {
+    		System.out.println(e.getMessage());
+    		return null;
+    	}finally {
+    		em.close();
+    	}
+    }
+   
+    public List<Tag> listAllTag(){
+    	EntityManager em = FactoryManager.getManager();
+    	try {
+    		return em.createQuery("From Tag", Tag.class).getResultList();
+    	}catch(Exception e) {
+    		System.out.println(e.getMessage());
+    		return null;
+    	}finally{
+    		em.close();
+    	}
     }
 }

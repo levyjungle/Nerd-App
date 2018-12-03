@@ -9,7 +9,7 @@
 <body>
 	<h1>Nos achamos vc!</h1>
 	<h2>Houve algo de errado com nossa pagina! :C</h2>
-	<h3>:D Por favor volte para nossa <a href="${pageContext.request.contextPath}/home">home</a></h3>
+	<h3>:D Por favor volte para nossa <a href="${pageContext.request.contextPath}/">home</a></h3>
 	
 </body>
 </html>

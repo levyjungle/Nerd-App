@@ -25,33 +25,73 @@ public class Media {
 	
 	@Column(length = 50)
 	private String name;
-
+	
+	@Column(columnDefinition = "TEXT")
 	private String synopsis;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
 
-	private String url;
+	private String urlVideo;
 	
-	private String mediaName;
+	private String urlPhoto;
 	
-	public String getMediaType() {
-		return mediaType;
+	private String mediaVideoName;
+	
+	private String mediaPhotoName;
+	
+	public String getMediaVideoName() {
+		return mediaVideoName;
 	}
 
-	public void setMediaType(String mediaType) {
-		this.mediaType = mediaType;
+	public void setMediaVideoName(String mediaVideoName) {
+		this.mediaVideoName = mediaVideoName;
+	}
+
+	public String getMediaPhotoName() {
+		return mediaPhotoName;
+	}
+
+	public void setMediaPhotoName(String mediaPhotoName) {
+		this.mediaPhotoName = mediaPhotoName;
 	}
 
 	@Column(length = 50)
-	private String mediaType;
+	private String mediaVideoType;
 	
-	public String getMediaName() {
-		return mediaName;
+	@Column(length = 50)
+	private String mediaPhotoType;
+	
+	public String getUrlVideo() {
+		return urlVideo;
 	}
 
-	public void setMediaName(String mediaName) {
-		this.mediaName = mediaName;
+	public void setUrlVideo(String urlVideo) {
+		this.urlVideo = urlVideo;
+	}
+
+	public String getUrlPhoto() {
+		return urlPhoto;
+	}
+
+	public void setUrlPhoto(String urlPhoto) {
+		this.urlPhoto = urlPhoto;
+	}
+
+	public String getMediaVideoType() {
+		return mediaVideoType;
+	}
+
+	public void setMediaVideoType(String mediaVideoType) {
+		this.mediaVideoType = mediaVideoType;
+	}
+
+	public String getMediaPhotoType() {
+		return mediaPhotoType;
+	}
+
+	public void setMediaPhotoType(String mediaPhotoType) {
+		this.mediaPhotoType = mediaPhotoType;
 	}
 
 	public String getCode() {
@@ -92,14 +132,6 @@ public class Media {
 
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	
 	public void mediaUuid() {

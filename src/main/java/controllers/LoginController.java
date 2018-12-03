@@ -24,7 +24,7 @@ public class LoginController {
 	@Get("/login")
 	public void login() {
 		if (userSession.isLogged()) {
-			result.redirectTo(IndexController.class).index();
+			result.redirectTo(HomeController.class).home();
 		}
 	}
 
@@ -40,7 +40,7 @@ public class LoginController {
 				userSession.setLogged(true);
 
 				userSession.setPerson(person);
-				result.redirectTo(HomeController.class).home();
+				result.redirectTo(UserController.class).index();
 			} else {
 				result.redirectTo(LoginController.class).login();
 			}

@@ -5,7 +5,10 @@
  */
 package repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+
 import model.MediaTags;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -72,5 +75,20 @@ public class MediaTagRepository {
         } finally {
             em.close();
         }
+    }
+    
+    public List<MediaTags> searchTagByMediaCode(String code){
+    	EntityManager em = FactoryManager.getManager();
+    	Session session = (Session) em.getDelegate();
+    	Criteria criteria = session.createCriteria(MediaTags.class);
+    	try {
+    		criteria.add(Restrictions.eq("media.code", code));
+    		return criteria.list();
+    	}catch (Exception e) {
+    		System.out.println(e.getMessage());
+    		return null;
+    	}finally {
+    		em.close();
+    	}
     }
 }

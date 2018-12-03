@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,13 +22,17 @@ public class Tag {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
-	public String getTaglist() {
+	
+	public String getTagName() {
 		return tagName;
 	}
 
-	public void setTaglist(String tagName) {
+	public void setTagName(String tagName) {
 		this.tagName = tagName;
+	}
+
+	public void UuidTag() {
+		this.code = UUID.randomUUID().toString();
 	}
 	
 }

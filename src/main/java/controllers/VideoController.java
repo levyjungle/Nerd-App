@@ -27,33 +27,12 @@ public class VideoController {
 	MediaRepository mediaRepository = new MediaRepository();
 	CommentRepository commentRepository = new CommentRepository();
 	
-	@Get("/todos_os_videos")
-	public void lista() {
+	@Get("todos_os_videos")
+	public void list() {
 		List<Media> media = mediaRepository.listAllVideo();
 		result.include("media", media);
-		result.include("result", "false");
 	}
 	
-	@Get("/meus_videos")
-	 public void myvideo(){            
-        String personCode = userSession.getPerson().getCode();
-        List<Media> media =  mediaRepository.sharedMediaBySpecificUser(personCode, "person.code");
-        result.include("media", media);
-        result.include("result", "true");
-    }
-	
-	@Get("/editar/{code}")
-	public void edit(String code) {
-		Media media = mediaRepository.searchMediaCode(code);	
-		if (!media.getPerson().getCode().equals(userSession.getPerson().getCode())) {
-			result.redirectTo(IndexController.class).index();
-		}else {
-			List<Comment> comment = commentRepository.searchCommentByMedia(code);
-			result.include("comment", comment);
-			result.include("media", media);
-		}
-	}
-
 	@Get("/assistir/{code}")
 	public void watch(String code) {
 		Media media = mediaRepository.searchMediaCode(code);
@@ -61,19 +40,7 @@ public class VideoController {
 		result.include("comment", comment);
 		result.include("media", media);
 	}
-	
-	@Post("editFile")
-	public void editFile(String code, String name, String synopsis) {
-		Media media = mediaRepository.searchMediaCode(code);
-		if(media.getPerson().getCode().equals(userSession.getPerson().getCode())) {
-			media.setName(name);
-			media.setSynopsis(synopsis);
-			
-			mediaRepository.updateMedia(media);
-		}
-		result.redirectTo(IndexController.class).index();
-	}
-	
+
 	@Post("videoComment")
 	public void videoComment(String videoCode, String message) {	
 		Media media = mediaRepository.searchMediaCode(videoCode);

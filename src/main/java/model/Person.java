@@ -19,6 +19,9 @@ public class Person {
 	@Column(length = 100, nullable = false)
 	private String name;
 	
+	@Column(length = 1)
+	private String admin;
+	
 	@JoinColumn
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Address address;
@@ -26,6 +29,14 @@ public class Person {
 	@JoinColumn
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Profile profile;
+	
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
 
 	public String getCode() {
 		return code;

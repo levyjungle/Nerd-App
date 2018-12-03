@@ -13,8 +13,8 @@ import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import model.Media;
 
 public class FilesUpload {
-	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "xxxxx", "api_key",
-			"xxxxxx", "api_secret", "xxxxx"));
+	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "xxxx", "api_key",
+			"xxxx", "api_secret", "xxxx"));
 	
 	// Save a nem uploaded file on server
 	public Map upload(UploadedFile fileUpload) {
@@ -46,7 +46,7 @@ public class FilesUpload {
 	}
 	
 	// Get Uploaded file and overwrite in server for new file
-	public Map atualizeFile(UploadedFile fileUpload, Media media) {
+	public Map atualizeFile(UploadedFile fileUpload) {
 		try {
 			String[] getType = fileUpload.getContentType().split("/");
 			if (getType[1].equalsIgnoreCase("jpeg")) {
@@ -60,10 +60,11 @@ public class FilesUpload {
                         Map params = null;
                         UuidGenerator uuid = new UuidGenerator();
                         if(getType[0].equalsIgnoreCase("video")){
-                            params =  ObjectUtils.asMap("public_id", "Home/video/"+media.getMediaName(), "resource_type", "video");
+                            params =  ObjectUtils.asMap("public_id", "Home/video/"+fileUpload.getFileName(), "resource_type", "video");
                         }else {
-                            params =  ObjectUtils.asMap("public_id", "Home/photo/"+media.getMediaName()+uuid.Uuid());
+                            params =  ObjectUtils.asMap("public_id", "Home/photo/"+fileUpload.getFileName() + uuid.Uuid());
                         }
+                        
     
 			Map<String, String> uploadResult = cloudinary.uploader().upload(file, params);
                         return uploadResult;

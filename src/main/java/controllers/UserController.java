@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -14,7 +15,9 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import components.UserSession;
+import model.Media;
 import model.Person;
+import repository.MediaRepository;
 import repository.PersonRepository;
 
 @Controller
@@ -25,6 +28,7 @@ public class UserController {
 	private UserSession userSession;
 	
 	PersonRepository personRepository = new PersonRepository();
+	MediaRepository mediaRepository = new MediaRepository();
 	
 	@Get("conta")
 	public void myAccount() {
@@ -34,15 +38,17 @@ public class UserController {
 	@Post("atualizeProfile")
 	public void atualizeProfile(String name, String nickname, String birthday, String sex, String city, String street, String neighborhood, String number) throws ParseException {
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(format.parse(birthday).getTime());
-		
 		Person person = userSession.getPerson();
+		if(birthday != null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date(format.parse(birthday).getTime());
+			person.getProfile().setBirthday(date);
+		}
+	
 		person.setCode(userSession.getPerson().getCode());
 		person.setName(name);
 		
 		person.getProfile().setNickname(nickname);
-		person.getProfile().setBirthday(date);
 		person.getProfile().setSex(sex);
 		
 		person.getAddress().setCity(city);
@@ -55,8 +61,9 @@ public class UserController {
 		result.redirectTo(this).myAccount();
 	}
 	
-	@Get("perfil")
-	public void perfil() {
-		
+	@Get("index")
+	public void index() {
+		List<Media> media = mediaRepository.listAllVideo();
+		result.include("media", media);
 	}
 }

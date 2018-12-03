@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import annotations.Public;
 import components.UserSession;
-import controllers.IndexController;
+import controllers.HomeController;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
@@ -26,7 +26,7 @@ public class LoginInterceptor implements Interceptor{
 		if(userSession.isLogged()) {
 			stack.next(method, controllerInstance);
 		} else {
-			result.redirectTo(IndexController.class).index();
+			result.redirectTo(HomeController.class).home();
 		}
 		
 	}

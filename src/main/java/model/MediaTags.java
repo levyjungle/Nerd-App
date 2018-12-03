@@ -22,8 +22,8 @@ public class MediaTags {
 	private Media media;
 	
 	@JoinColumn
-	@OneToMany(fetch = FetchType.EAGER)
-	private Set<Tag> tag;
+	@OneToOne(fetch = FetchType.EAGER)
+	private Tag tag;
 
 	public String getCode() {
 		return code;
@@ -40,15 +40,16 @@ public class MediaTags {
 	public void setMedia(Media media) {
 		this.media = media;
 	}
-
-	public Set<Tag> getTag() {
+	
+	
+	public Tag getTag() {
 		return tag;
 	}
 
-	public void setTag(Set<Tag> tag) {
+	public void setTag(Tag tag) {
 		this.tag = tag;
 	}
-	
+
 	public void mediaTagUuid() {
 		this.code = UUID.randomUUID().toString();
 	}

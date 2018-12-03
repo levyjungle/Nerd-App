@@ -27,7 +27,7 @@ public class RegisterController {
 	@Get("/register")
 	public void register() {
 		if (userSession.isLogged()) {
-			result.redirectTo(IndexController.class).index();
+			result.redirectTo(HomeController.class).home();
 		}
 	}
 	
@@ -53,12 +53,13 @@ public class RegisterController {
 			person.setName(name);
 			person.setAddress(address);
 			person.setProfile(profile);
+			person.setAdmin("0");
 			
 			userSession.setLogged(true);
 			personRepository.savePerson(person);
 
 			userSession.setPerson(person);
-			result.redirectTo(HomeController.class).home();
+			result.redirectTo(UserController.class).index();
 		} else {
 			result.redirectTo(RegisterController.class).register();
 		}
