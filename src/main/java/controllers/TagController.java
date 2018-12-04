@@ -47,7 +47,7 @@ public class TagController {
 	}
 	
 	@Get("removeTag/{tagName}")
-	public void removeTag(String code) {
+	public void removeTag(String tagName) {
 		if(userSession.getPerson().getAdmin().equals("1")) {
 			Tag tag = tagRepository.searchTagByCode(code);
 			tagRepository.deleteTag(tag.getCode());
