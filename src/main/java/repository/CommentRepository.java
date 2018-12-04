@@ -23,6 +23,7 @@ public class CommentRepository {
 			em.getTransaction().commit();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			em.getTransaction().rollback();
 			e.printStackTrace();
 		}finally {
 			em.close();
@@ -40,6 +41,7 @@ public class CommentRepository {
 			return criteria.list();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			em.getTransaction().rollback();
 			return null;
 		}finally {
 			em.close();
@@ -52,6 +54,7 @@ public class CommentRepository {
 			return em.find(Comment.class, code);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			em.getTransaction().rollback();
 			return null;
 		}finally {
 			em.close();
@@ -67,6 +70,7 @@ public class CommentRepository {
 			em.getTransaction().commit();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			em.getTransaction().rollback();
 		}finally {
 			em.close();
 		}
