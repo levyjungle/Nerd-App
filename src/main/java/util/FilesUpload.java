@@ -13,8 +13,8 @@ import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import model.Media;
 
 public class FilesUpload {
-	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "nerdzonia", "api_key", "966118315853311",
-			"api_secret", "HRv2x14ZTrL-YtfzIsgyrmBIcDw"));
+	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "xxxx", "api_key", "xxxx",
+			"api_secret", "xxxx"));
 	UuidGenerator uuid = new UuidGenerator();
 
 	// Save a nem uploaded file on server
