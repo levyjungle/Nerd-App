@@ -23,6 +23,7 @@ public class PersonRepository {
 			em.persist(person);
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().rollback();
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			System.out.println(e.getCause());
@@ -39,6 +40,7 @@ public class PersonRepository {
 			em.remove(p);
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().rollback();
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			System.out.println(e.getCause());
@@ -57,6 +59,7 @@ public class PersonRepository {
 				return p;
 			}
 		}catch(Exception e) {
+			em.getTransaction().rollback();
 			System.out.println(e.getMessage());
 			return null;
 		} finally {
@@ -76,6 +79,7 @@ public class PersonRepository {
 			Person person = (Person) criteria.uniqueResult();
 			return person;
 		}catch(HibernateException e){
+			em.getTransaction().rollback();
 			System.out.println(e.getMessage());
 			return null;
 		}finally {
@@ -91,6 +95,7 @@ public class PersonRepository {
             em.merge(person);
 	em.getTransaction().commit();
         } catch (Exception e) {
+		em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
@@ -102,6 +107,7 @@ public class PersonRepository {
     	try {
     		return em.createQuery("From Person", Person.class).getResultList();
     	}catch(Exception e) {
+		em.getTransaction().rollback();
     		System.out.println(e.getMessage());
     		return null;
     	}finally {
