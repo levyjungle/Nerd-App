@@ -30,6 +30,7 @@ public class MediaTagRepository {
             em.persist(mediaTag);
             em.getTransaction().commit();
         } catch (Exception e) {
+            em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
@@ -43,6 +44,7 @@ public class MediaTagRepository {
             em.remove(mediaTag);
             em.getTransaction().commit();
         } catch (Exception e) {
+            em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
@@ -56,6 +58,7 @@ public class MediaTagRepository {
             em.merge(mediaTag);
             em.getTransaction().commit();
         } catch (Exception e) {
+            em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
@@ -70,6 +73,7 @@ public class MediaTagRepository {
             c.add(Restrictions.ilike("mediaTag", mediaTag, MatchMode.ANYWHERE));
             return (MediaTags) c.list();
         } catch (HibernateException e) {
+            em.getTransaction().rollback();
             System.out.println(e.getMessage());
             return null;
         } finally {
@@ -85,6 +89,7 @@ public class MediaTagRepository {
     		criteria.add(Restrictions.eq("media.code", code));
     		return criteria.list();
     	}catch (Exception e) {
+            em.getTransaction().rollback();
     		System.out.println(e.getMessage());
     		return null;
     	}finally {
