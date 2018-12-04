@@ -5,6 +5,6 @@
 	<center>
 		<div class="ico-img-box">
 			<img class="responsive-img" style="width: 250px;"
-				src="img/nerdzoniaicon.ico" />
+				src="https://res.cloudinary.com/nerdzonia/image/upload/v1543461601/nerdzoniaicon.ico" />
 		</div>
 	</center>

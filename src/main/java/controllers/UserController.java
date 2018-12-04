@@ -109,9 +109,16 @@ public class UserController {
 	public void index() {
 		List<Media> media = mediaRepository.listAllVideo();
 		result.include("media", media);
-		Collections.shuffle(media);
-		result.include("banner", media);
+		List<Media> m = media;
+		Collections.shuffle(m);
+		result.include("banner", m);
 	}
 	
+	@Get("searchMediaByName")
+	public void listMediaByName(String movieName) {
+		List<Media> media = mediaRepository.searchMediaByName(movieName);
+		result.include("movie", media);
+		result.redirectTo(this).index();
+	}
 	
 }

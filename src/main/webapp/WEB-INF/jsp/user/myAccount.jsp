@@ -8,7 +8,7 @@
     <%@ include  file="../include/menu.jsp" %>    
     <section>
     	<ul>
-    		<li><a href="/index">Voltar</a></li>
+    		<li><a href="index">Voltar</a></li>
     	</ul>
     	<span class="account"></span>
         <div class="box">

@@ -41,13 +41,13 @@ public class MediaRepository {
         }
     }
 
-    public Media searchMediaByName(String name) {
+    public List<Media> searchMediaByName(String name) {
         EntityManager em = FactoryManager.getManager();
         try {
             Session session = (Session) em.getDelegate();
             Criteria c = session.createCriteria(Media.class);
             c.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
-            return (Media) c.list();
+            return c.list();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             return null;

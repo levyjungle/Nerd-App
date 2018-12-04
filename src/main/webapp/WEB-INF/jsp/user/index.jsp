@@ -54,7 +54,7 @@
   <nav class="red darken-4">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">
-      <img src="img/nerdzoniaicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">NerdZonia
+      <img src="https://res.cloudinary.com/nerdzonia/image/upload/v1543461601/nerdzoniaicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">NerdZonia
       </a>
       <a href="escorpo.html" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
@@ -100,7 +100,41 @@
     </div>
 
     <!--CATALAGOS DE FILMES-->
-    <section>
+    <section> 
+    	
+        <form action="${pageContext.request.contextPath}/searchMediaByName" method="get" style="margin-top:70px;">
+        	<input type="text" name="movieName" placeholder="Digite aqui o nome do filme que deseja encontrar" style="color:white; text-align:center;">
+        </form>
+        
+        <c:if test="${movie != null}">
+			<div class="primary-1">
+				<blockquote class="white-text">
+				Encontramos os seguintes filmes!
+				</blockquote>
+        	</div>
+        </c:if>
+   		
+     <!--Resultado da Procura -->  
+        <div class="row">
+	        <c:forEach items="${movie}" var="movie">
+	     		<div class="grid-example col s12 m4">
+	            <div class="card">
+	                <div class="card-image waves-effect waves-block waves-light">
+	                  <img class="activator" src="${movie.urlPhoto}" width="700" height="199">
+	                </div>
+	                <div class="card-content">
+	                  <span class="card-title activator grey-text text-darken-4">${movie.name}<i class="material-icons right">more_vert</i></span>
+	                  <p><a href="${pageContext.request.contextPath}/video/assistir/${movie.code}" class="waves-effect waves-light btn small red"><i class="material-icons left">play_arrow</i>Assista Agora</a></p>
+	                </div>
+	                <div class="card-reveal">
+	                  <span class="card-title grey-text text-darken-4">Sinopse<i class="material-icons right">close</i></span>
+	                  <p>${movie.synopsis}</p>
+	                </div>
+	              </div>
+	          </div>
+	     	</c:forEach>
+        </div>	
+    
       <div class="primary">
         <blockquote class="white-text">
           Filmes Disponiveis
@@ -126,9 +160,9 @@
 	              </div>
 	          </div>
 	     	</c:forEach>
-        </div>		
+        </div>	 
       </section>
-
+	  
       <footer class="page-footer grey darken-4">
           <div class="container">
             <div class="row">

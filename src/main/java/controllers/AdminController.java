@@ -60,6 +60,13 @@ public class AdminController {
 		}
 	}
 	
+	@Post("searchMediaByName")
+	public void listMediaByName(String movieName) {
+		List<Media> media = mediaRepository.searchMediaByName(movieName);
+		result.include("movie", media);
+		result.redirectTo(this).listmidia();
+	}
+	
 	//edit opition for this video
 	@Get("/editar/{code}")
 	public void admineditmovie(String code) {

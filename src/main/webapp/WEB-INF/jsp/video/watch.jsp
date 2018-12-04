@@ -9,7 +9,7 @@
 </head>
 <body>
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/index">Voltar</a></li>
+		<li><a href="${pageContext.request.contextPath}/">Voltar</a></li>
 	</ul>
 	<center>
 		<h1>${media.name}</h1>

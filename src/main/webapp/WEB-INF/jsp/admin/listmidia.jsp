@@ -11,6 +11,14 @@
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/admin/">Back</a></li>
 	</ul>
+	<form action="${pageContext.request.contextPath}/admin/searchMediaByName" method="post">
+		<input type="text" name="movieName">
+		<input type="submit" placeholder="Submit">
+	</form>
+	<c:forEach items="${movie}" var="movie">
+		<article><b>${movie.name}</b> | <a href="${pageContext.request.contextPath}/video/assistir/${movie.code}">Assistir</a> | <a href="${pageContext.request.contextPath }/admin/editar/${movie.code}">Editar</a></article>
+	</c:forEach>
+	<br>
 	<table>
 		<th>Enviado por</th>
 		<th>Nome</th>
