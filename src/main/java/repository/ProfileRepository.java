@@ -26,6 +26,7 @@ public class ProfileRepository {
             System.out.println(pro.getEmail());
             return pro;
         } catch (HibernateException e) {
+            em.getTransaction().rollback();
             System.out.println(e.getMessage());
             return null;
         } finally {
