@@ -22,6 +22,7 @@ public class MediaRepository {
             em.persist(media);
             em.getTransaction().commit();
         } catch (Exception e) {
+		em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
@@ -35,6 +36,7 @@ public class MediaRepository {
             em.remove(media);
             em.getTransaction().commit();
         } catch (Exception e) {
+		em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
@@ -49,6 +51,7 @@ public class MediaRepository {
             c.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
             return c.list();
         } catch (HibernateException e) {
+		em.getTransaction().rollback();
             System.out.println(e.getMessage());
             return null;
         } finally {
@@ -61,6 +64,7 @@ public class MediaRepository {
     		Media media = em.find(Media.class, code);
     		return media;
     	}catch(Exception e) {
+		em.getTransaction().rollback();
     		System.out.println(e.getMessage());
     		return null;
     	}finally {
@@ -76,6 +80,7 @@ public class MediaRepository {
             criteria.add(c1);
             return criteria.list();
         }catch(Exception e){
+		em.getTransaction().rollback();
             System.out.println(e.getMessage());
             e.printStackTrace();
             return null;
@@ -89,6 +94,7 @@ public class MediaRepository {
     	try {
     		return em.createQuery("FROM Media", Media.class).getResultList();
     	}catch(Exception e) {
+		em.getTransaction().rollback();
     		System.out.println(e.getMessage());
     		return null;
     	}finally {
@@ -103,6 +109,7 @@ public class MediaRepository {
             em.merge(media);
             em.getTransaction().commit();
         } catch (Exception e) {
+		em.getTransaction().rollback();
             System.out.println(e.getMessage());
         } finally {
             em.close();
