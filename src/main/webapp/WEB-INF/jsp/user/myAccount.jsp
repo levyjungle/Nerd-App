@@ -7,6 +7,9 @@
 <body>
     <%@ include  file="../include/menu.jsp" %>    
     <section>
+    	<ul>
+    		<li><a href="/index">Voltar</a></li>
+    	</ul>
     	<span class="account"></span>
         <div class="box">
             <div class="boxAccoutSettings">
@@ -63,6 +66,21 @@
                     <div class="submitButton">
                         <input type="submit">
                     </div>
+                </form>
+                <br>
+                <h3>Atualizar Perfil</h3>
+                <img src="${userSession.person.profile.urlProfile}" width="200px" heigt="auto">
+                <form action="atualizeProfilePhoto" method="post" enctype="multipart/form-data">
+                	<input type="file" name="fileUpload" accept="image/*">
+                	<input type="submit" placeholder="Enviar">
+                </form>
+                 <br>
+                <h3>Atualizar Background</h3>
+                <h5>Para evitar bugs envie background com dimensões inferior a 600x600</h5>
+                <img src="${userSession.person.profile.urlBackground}" width="200px" heigt="auto">
+                <form action="atualizeProfileBackground" method="post" enctype="multipart/form-data">
+                	<input type="file" name="fileUpload" accept="image/*">
+                	<input type="submit" placeholder="Enviar">
                 </form>
             </div>
         </div>

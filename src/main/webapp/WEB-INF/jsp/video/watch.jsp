@@ -8,6 +8,9 @@
 <title>Nerdzonia</title>
 </head>
 <body>
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/index">Voltar</a></li>
+	</ul>
 	<center>
 		<h1>${media.name}</h1>
 		<video width="50%" height="500px" controls preload="none">

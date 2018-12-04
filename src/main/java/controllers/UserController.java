@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -14,11 +16,14 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import components.UserSession;
 import model.Media;
 import model.Person;
 import repository.MediaRepository;
 import repository.PersonRepository;
+import util.FilesUpload;
 
 @Controller
 public class UserController {
@@ -29,6 +34,7 @@ public class UserController {
 	
 	PersonRepository personRepository = new PersonRepository();
 	MediaRepository mediaRepository = new MediaRepository();
+	FilesUpload filesUpload = new FilesUpload();
 	
 	@Get("conta")
 	public void myAccount() {
@@ -61,9 +67,51 @@ public class UserController {
 		result.redirectTo(this).myAccount();
 	}
 	
+	@Post("atualizeProfilePhoto")
+	@UploadSizeLimit(sizeLimit = 10 * 1024 * 1024, fileSizeLimit = 10 * 1024 * 1024)
+	public void atualizeProfilePhoto(UploadedFile fileUpload) {
+		System.out.println(fileUpload.getFileName());
+		if(fileUpload != null) {
+			Map<String, String> uploadResult = filesUpload.atualizeFile(fileUpload, userSession.getPerson().getProfile().getFileProfileTag());	
+			Person p = userSession.getPerson();
+			
+			userSession.getPerson().getProfile().setUrlProfile(uploadResult.get("url"));
+			userSession.getPerson().getProfile().setFileProfileTag(uploadResult.get("public_id"));
+			
+			p.getProfile().setFileProfileTag(uploadResult.get("public_id"));
+			p.getProfile().setUrlProfile(uploadResult.get("url"));
+			
+			personRepository.updatePerson(p);
+		}
+		result.redirectTo(this).index();
+	}
+	
+	@Post("atualizeProfileBackground")
+	@UploadSizeLimit(sizeLimit = 10 * 1024 * 1024, fileSizeLimit = 10 * 1024 * 1024)
+	public void atualizeProfileBacjground(UploadedFile fileUpload) {
+		System.out.println(fileUpload.getFileName());
+		if(fileUpload != null) {
+			Map<String, String> uploadResult = filesUpload.atualizeFile(fileUpload, userSession.getPerson().getProfile().getFileBackgroundTag());	
+			Person p = userSession.getPerson();
+			
+			userSession.getPerson().getProfile().setUrlBackground(uploadResult.get("url"));
+			userSession.getPerson().getProfile().setFileBackgroundTag(uploadResult.get("public_id"));
+			
+			p.getProfile().setFileBackgroundTag(uploadResult.get("public_id"));
+			p.getProfile().setUrlBackground(uploadResult.get("url"));
+			
+			personRepository.updatePerson(p);
+		}
+		result.redirectTo(this).index();
+	}
+	
 	@Get("index")
 	public void index() {
 		List<Media> media = mediaRepository.listAllVideo();
 		result.include("media", media);
+		Collections.shuffle(media);
+		result.include("banner", media);
 	}
+	
+	
 }

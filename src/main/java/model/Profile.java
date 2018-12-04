@@ -33,10 +33,30 @@ public class Profile {
 	@Column(length = 100 , nullable = false)
 	private String password;
 	
+	private String fileProfileTag;
+	
+	private String fileBackgroundTag;
+	
 	private String urlProfile;
 	
 	private String urlBackground;
 	
+	public String getFileProfileTag() {
+		return fileProfileTag;
+	}
+
+	public void setFileProfileTag(String fileProfileTag) {
+		this.fileProfileTag = fileProfileTag;
+	}
+
+	public String getFileBackgroundTag() {
+		return fileBackgroundTag;
+	}
+
+	public void setFileBackgroundTag(String fileBackgroundTag) {
+		this.fileBackgroundTag = fileBackgroundTag;
+	}
+
 	public String getCode() {
 		return code;
 	}

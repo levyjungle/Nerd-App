@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -118,7 +119,7 @@ public class AdminController {
 				mediaRepository.saveMedia(media);
 			}
 		}
-		result.redirectTo(HomeController.class).home();
+			result.redirectTo(HomeController.class).home();
 	}
 	
 	//list all peoples

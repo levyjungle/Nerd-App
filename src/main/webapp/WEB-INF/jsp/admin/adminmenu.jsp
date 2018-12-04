@@ -8,7 +8,7 @@
 </head>
 <body>
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/perfil">Back</a></li>
+		<li><a href="${pageContext.request.contextPath}/index">Back</a></li>
 	</ul>
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/admin/upload">Movie Upload</a></li>
