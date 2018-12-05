@@ -14,7 +14,7 @@ import br.com.caelum.vraptor.interceptor.Interceptor;
 
 @Intercepts
 public class LoginInterceptor implements Interceptor{
-
+	
 	@Inject
 	private UserSession userSession;
 	@Inject
@@ -36,5 +36,4 @@ public class LoginInterceptor implements Interceptor{
 		
 		return !method.containsAnnotation(Public.class);
 	}
-	
 }

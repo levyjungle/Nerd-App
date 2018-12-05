@@ -28,6 +28,7 @@ public class MovieController {
 	MediaTagRepository mediaTagRepository = new MediaTagRepository();
 	TagRepository tagRepository = new TagRepository();
 	
+	//main return all media in database
 	@Get("/")
 	public void edittagmovie() {
 		if(userSession.getPerson().getAdmin().equals("1")) {
@@ -38,6 +39,7 @@ public class MovieController {
 		}
 	}
 	
+	//get url code and search this in database 
 	@Get("edit/{code}")
 	public void movietagmanager(String code) {
 		if(userSession.getPerson().getAdmin().equals("1")) {

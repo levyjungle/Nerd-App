@@ -27,12 +27,14 @@ public class VideoController {
 	MediaRepository mediaRepository = new MediaRepository();
 	CommentRepository commentRepository = new CommentRepository();
 	
+	
 	@Get("todos_os_videos")
 	public void list() {
 		List<Media> media = mediaRepository.listAllVideo();
 		result.include("media", media);
 	}
 	
+	//video's page by code
 	@Get("/assistir/{code}")
 	public void watch(String code) {
 		Media media = mediaRepository.searchMediaCode(code);
@@ -40,7 +42,7 @@ public class VideoController {
 		result.include("comment", comment);
 		result.include("media", media);
 	}
-
+	//video's comments
 	@Post("videoComment")
 	public void videoComment(String videoCode, String message) {	
 		Media media = mediaRepository.searchMediaCode(videoCode);
@@ -58,6 +60,7 @@ public class VideoController {
 		result.redirectTo(this).watch(media.getCode());
 	}
 	
+	//delete comment in video
 	@Get("delete/{code}/{pageCode}")
 	public void eraseComment(String code, String pageCode) {
 		Comment comment = commentRepository.searchCommentCode(code);

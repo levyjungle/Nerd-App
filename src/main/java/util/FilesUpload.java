@@ -17,7 +17,7 @@ public class FilesUpload {
 			"api_secret", "HRv2x14ZTrL-YtfzIsgyrmBIcDw"));
 	UuidGenerator uuid = new UuidGenerator();
 
-	// Save a nem uploaded file on server
+	// Save a nem uploaded file on server and send to cloudinary media database
 	public Map upload(UploadedFile fileUpload) {
 		try {
 			String[] getType = fileUpload.getContentType().split("/");
@@ -46,7 +46,7 @@ public class FilesUpload {
 		}
 	}
 
-	// Get Uploaded file and overwrite in server for new file
+	// Get Uploaded file and overwrite in server for new file through the your public_id
 	public Map atualizeFile(UploadedFile fileUpload, String public_id) {
 		try {
 			String[] getType = fileUpload.getContentType().split("/");
@@ -60,7 +60,7 @@ public class FilesUpload {
 
 			Map params = null;
 			if (getType[0].equalsIgnoreCase("video")) {
-				params = ObjectUtils.asMap("public_id", "Home/video/" + fileUpload.getFileName(), "resource_type",
+				params = ObjectUtils.asMap("public_id", public_id, "resource_type",
 						"video");
 			} else {
 				if (public_id == null) {

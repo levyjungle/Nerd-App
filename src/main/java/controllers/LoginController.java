@@ -14,12 +14,14 @@ import util.Crypt;
 
 @Controller
 public class LoginController {
-	PersonRepository personRepository = new PersonRepository();
+	@Inject
+	private PersonRepository personRepository;
 	@Inject
 	private Result result;
 	@Inject
 	private UserSession userSession;
-
+	
+	//page login return to home if isLogged true
 	@Public
 	@Get("/login")
 	public void login() {
@@ -27,7 +29,8 @@ public class LoginController {
 			result.redirectTo(HomeController.class).home();
 		}
 	}
-
+	
+	//login validation
 	@Public
 	@Post("sendLogin")
 	public void sendLogin(String email, String password) {

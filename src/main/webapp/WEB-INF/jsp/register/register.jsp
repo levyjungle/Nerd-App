@@ -59,7 +59,7 @@
         <div class="row">
              <div class="input-field col s12">
                  <i class="material-icons prefix">person_pin</i>
-                 <input class="validade" type="text" name="name" id="text"/>
+                 <input class="validade" type="text" name="name" id="text" required/>
                  <label for="text">Insira seu nome</label>
              </div>
          </div>
@@ -67,7 +67,7 @@
 		<div class="row">
            <div class="input-field col s12">
                <i class="material-icons prefix">person</i>
-               <input class="validade" type="text" name="nickname" id="nickname"/>
+               <input class="validade" type="text" name="nickname" id="nickname" required/>
                <label for="text">Crie um apelido</label>
            </div>
       	</div>
@@ -75,7 +75,7 @@
 		<div class='row'>
 			<div class='input-field col s12'>
 			  <i class="material-icons prefix">email</i>
-			  <input class='' type='email' name='email' id='email' />
+			  <input class='' type='email' name='email' id='email' required />
 			  <label for='email'>Insira seu email</label>
 			</div>
 		</div>
@@ -83,13 +83,13 @@
 		<div class='row'>
 			<div class='input-field col s12'>
 				  <i class="material-icons prefix">lock</i>
-				  <input class='validate' type='password' name='password' id='password' />
+				  <input class='validate' type='password' name='password' id='password' required/>
 				  <label for='password'>Insira sua senha</label>
 			</div>
 			
 			<div class='input-field col s12'>
 				  <i class="material-icons prefix">lock</i>
-				  <input class='validate' type='password' name='confirmPassword' id='ConfirmPassword' />
+				  <input class='validate' type='password' name='confirmPassword' id='ConfirmPassword' required/>
 				  <label for='password'>Confirme sua senha</label>
 			</div>
 			<label style='float: right;'>

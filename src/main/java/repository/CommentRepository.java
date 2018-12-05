@@ -23,8 +23,8 @@ public class CommentRepository {
 			em.getTransaction().commit();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
-			em.getTransaction().rollback();
 			e.printStackTrace();
+			em.getTransaction().rollback();
 		}finally {
 			em.close();
 		}

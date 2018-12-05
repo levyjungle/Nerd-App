@@ -22,14 +22,14 @@ public class TagController {
 	private UserSession userSession;
 	
 	TagRepository tagRepository = new TagRepository();
-	
+	//main
 	@Get("/")
 	public void addtag() {
 		List<Tag> tag = tagRepository.listAllTag();
-		result.include("tag", tag);
-		
+		result.include("tag", tag);	
 	}
 	
+	//New tag add to database
 	@Post("insertTag")
 	public void insertTag(String tagName) {
 		if(userSession.getPerson().getAdmin().equals("1")) {
@@ -46,6 +46,8 @@ public class TagController {
 		}
 	}
 	
+	
+	//Search code tag and delete he
 	@Get("removeTag/{code}")
 	public void removeTag(String code) {
 		if(userSession.getPerson().getAdmin().equals("1")) {
@@ -57,6 +59,7 @@ public class TagController {
 		}
 	}
 	
+	//Search tag by name
 	@Post("searchTag")
 	public void searchTag(String tagName) {
 		if(userSession.getPerson().getAdmin().equals("1")) {

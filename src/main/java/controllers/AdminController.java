@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +59,7 @@ public class AdminController {
 		}
 	}
 	
+	//Get name and search media ilike movieName and return object media to listmidia
 	@Post("searchMediaByName")
 	public void listMediaByName(String movieName) {
 		List<Media> media = mediaRepository.searchMediaByName(movieName);

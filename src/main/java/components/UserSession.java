@@ -10,10 +10,7 @@ import model.Person;
 @SessionScoped
 @Named("userSession")
 public class UserSession implements Serializable{
-
-	/**
-	 * 
-	 */
+	//This class create and save objects in browser session 
 	private static final long serialVersionUID = 1L;
 
 	private boolean isLogged;

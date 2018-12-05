@@ -54,7 +54,7 @@ body {
 					<div class='row'>
 						<div class='input-field col s12'>
 							<i class="material-icons prefix">perm_identity</i> <input
-								class='validate' type='email' name='email' id='email' /> <label
+								class='validate' type='email' name='email' id='email' required/> <label
 								for='email'>Insira seu email</label>
 						</div>
 					</div>
@@ -62,7 +62,7 @@ body {
 					<div class='row'>
 						<div class='input-field col s12'>
 							<i class="material-icons prefix">lock</i> <input class='validate'
-								type='password' name='password' id='password' /> <label
+								type='password' name='password' id='password' required/> <label
 								for='password'>Insira sua senha</label>
 						</div>
 						<label style='float: right;'> <a class='pink-text'

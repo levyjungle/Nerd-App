@@ -23,6 +23,7 @@ public class RegisterController {
 	
 	PersonRepository personRepository = new PersonRepository();
 	
+	//page to register
 	@Public
 	@Get("/register")
 	public void register() {
@@ -31,6 +32,7 @@ public class RegisterController {
 		}
 	}
 	
+	//form validation
 	@Public
 	@Post("sendRegister")
 	public void sendRegister(String name, String email, String nickname, String password, String confirmPassword) {

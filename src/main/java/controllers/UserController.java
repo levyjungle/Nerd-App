@@ -36,11 +36,14 @@ public class UserController {
 	MediaRepository mediaRepository = new MediaRepository();
 	FilesUpload filesUpload = new FilesUpload();
 	
+	
+	//profile user
 	@Get("conta")
 	public void myAccount() {
 		
 	}
 	
+	//form validation
 	@Post("atualizeProfile")
 	public void atualizeProfile(String name, String nickname, String birthday, String sex, String city, String street, String neighborhood, String number) throws ParseException {
 		
@@ -67,6 +70,8 @@ public class UserController {
 		result.redirectTo(this).myAccount();
 	}
 	
+	
+	//create a new photo profile or overwrite
 	@Post("atualizeProfilePhoto")
 	@UploadSizeLimit(sizeLimit = 10 * 1024 * 1024, fileSizeLimit = 10 * 1024 * 1024)
 	public void atualizeProfilePhoto(UploadedFile fileUpload) {
@@ -86,6 +91,7 @@ public class UserController {
 		result.redirectTo(this).index();
 	}
 	
+	//create a new photo background or overwrite
 	@Post("atualizeProfileBackground")
 	@UploadSizeLimit(sizeLimit = 10 * 1024 * 1024, fileSizeLimit = 10 * 1024 * 1024)
 	public void atualizeProfileBacjground(UploadedFile fileUpload) {
@@ -105,6 +111,7 @@ public class UserController {
 		result.redirectTo(this).index();
 	}
 	
+	//index page
 	@Get("index")
 	public void index() {
 		List<Media> media = mediaRepository.listAllVideo();
@@ -114,6 +121,7 @@ public class UserController {
 		result.include("banner", m);
 	}
 	
+	//Search media in database
 	@Get("searchMediaByName")
 	public void listMediaByName(String movieName) {
 		List<Media> media = mediaRepository.searchMediaByName(movieName);

@@ -18,6 +18,7 @@ public class HomeController {
 	private Result result;
 	MediaRepository mediaRepository = new MediaRepository();
 	
+	//main
 	@Public
 	@Get("/")
 	public void home() {
@@ -25,7 +26,7 @@ public class HomeController {
 			result.redirectTo(UserController.class).index();
 		}
 	}
-            
+    //Set logged false for session object
     @Get("sair")
     public void exit() {
     	userSession.setLogged(false);

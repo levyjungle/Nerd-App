@@ -16,10 +16,6 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import util.FactoryManager;
 
-/**
- *
- * @author Lucas
- */
 public class TagRepository {
     
     public void saveTag(Tag tag) {
@@ -29,8 +25,8 @@ public class TagRepository {
             em.persist(tag);
             em.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
             System.out.println(e.getMessage());
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }
@@ -44,8 +40,8 @@ public class TagRepository {
             em.remove(tag);
             em.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
             System.out.println(e.getMessage());
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }
@@ -58,8 +54,8 @@ public class TagRepository {
             em.merge(tag);
             em.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
             System.out.println(e.getMessage());
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }
@@ -73,8 +69,8 @@ public class TagRepository {
             c.add(Restrictions.ilike("tagName", tag, MatchMode.ANYWHERE));
             return  c.list();
         } catch (HibernateException e) {
-            em.getTransaction().rollback();
             System.out.println(e.getMessage());
+            em.getTransaction().rollback();
             return null;
         } finally {
             em.close();
@@ -86,8 +82,8 @@ public class TagRepository {
     	try {
     		return em.find(Tag.class, code);
     	}catch(Exception e) {
-            em.getTransaction().rollback();
     		System.out.println(e.getMessage());
+    		em.getTransaction().rollback();
     		return null;
     	}finally {
     		em.close();
@@ -99,8 +95,8 @@ public class TagRepository {
     	try {
     		return em.createQuery("From Tag", Tag.class).getResultList();
     	}catch(Exception e) {
-            em.getTransaction().rollback();
     		System.out.println(e.getMessage());
+    		em.getTransaction().rollback();
     		return null;
     	}finally{
     		em.close();
