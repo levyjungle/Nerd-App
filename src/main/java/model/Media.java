@@ -31,6 +31,12 @@ public class Media {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
+	
+	@Column(length = 50)
+	private String mediaVideoType;
+	
+	@Column(length = 50)
+	private String mediaPhotoType;
 
 	private String urlVideo;
 	
@@ -39,6 +45,7 @@ public class Media {
 	private String mediaVideoName;
 	
 	private String mediaPhotoName;
+	
 	
 	public String getMediaVideoName() {
 		return mediaVideoName;
@@ -56,11 +63,6 @@ public class Media {
 		this.mediaPhotoName = mediaPhotoName;
 	}
 
-	@Column(length = 50)
-	private String mediaVideoType;
-	
-	@Column(length = 50)
-	private String mediaPhotoType;
 	
 	public String getUrlVideo() {
 		return urlVideo;
